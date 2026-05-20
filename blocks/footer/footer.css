@@ -1,20 +1,119 @@
+/* ── Base ── */
 footer {
-  background-color: var(--light-color);
-  font-size: var(--body-font-size-xs);
+  background-color: #ffffff;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  color: #1a1a1a;
 }
 
-footer .footer > div {
-  margin: auto;
-  max-width: 1200px;
-  padding: 40px 24px 24px;
-}
-
-footer .footer p {
+/* ── Nav Lists ── */
+footer .footer ul {
+  list-style: none;
   margin: 0;
+  padding: 16px 40px 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0 32px;
 }
 
+footer .footer li {
+  margin: 0;
+  line-height: 2.2;
+}
+
+/* ── Orange Nav Links ── */
+footer .footer ul a {
+  color: #d45500;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+footer .footer ul a:hover {
+  text-decoration: underline;
+}
+
+/* ── DOUBLE LINE BELOW NAVIGATION ── */
+footer .footer ul:last-of-type {
+  position: relative;
+  padding-bottom: 28px;
+  margin-bottom: 24px;
+}
+
+footer .footer ul:last-of-type::before,
+footer .footer ul:last-of-type::after {
+  content: '';
+  position: absolute;
+  left: 40px;
+  right: 40px;
+  border-top: 1px solid #ccc;
+}
+
+footer .footer ul:last-of-type::before {
+  bottom: 16px;
+}
+
+/* Second line with gap */
+footer .footer ul:last-of-type::after {
+  bottom: -10px;
+}
+
+/* ── Hide existing hr ── */
+footer .footer hr {
+  display: none;
+}
+
+/* ── Body Content ── */
+footer .footer > div {
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 0 40px 20px;
+}
+
+/* ── Paragraphs ── */
+footer .footer p {
+  margin: 0 0 10px;
+  line-height: 1.65;
+  font-size: 13px;
+  color: #1a1a1a;
+  text-align: center;
+}
+
+footer .footer p:last-child {
+  margin-bottom: 0;
+}
+
+/* ── Inline Links ── */
+footer .footer p a {
+  color: #d45500;
+  text-decoration: none;
+}
+
+footer .footer p a:hover {
+  text-decoration: underline;
+}
+
+/* ── Logo ── */
+footer .footer img {
+  max-height: 40px;
+  width: auto;
+  display: block;
+  margin: 20px 0 0 auto;
+}
+
+/* ── Desktop ── */
 @media (width >= 900px) {
+  footer .footer ul {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
   footer .footer > div {
-    padding: 40px 32px 24px;
+    padding-left: 40px;
+    padding-right: 40px;
   }
 }
