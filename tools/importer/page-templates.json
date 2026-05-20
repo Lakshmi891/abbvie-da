@@ -1,0 +1,64 @@
+{
+  "metadata": {
+    "projectType": "da"
+  },
+  "templates": [
+    {
+      "name": "costos-page",
+      "urls": ["https://www.mavyretpr.com/costos"],
+      "description": "MAVYRET cost information page with hero section, CTA banner for AbbVie Contigo enrollment, insurance cost breakdown grid, and ISI safety information section. Spanish language.",
+      "blocks": [
+        {
+          "name": "hero-pharma",
+          "instances": ["#background-container-1945835351"]
+        },
+        {
+          "name": "columns-cta-banner",
+          "instances": [".abbv-row-container.pr-cost-CAM.mavy-csto-seguro-medico-top"]
+        },
+        {
+          "name": "table-highlight",
+          "instances": ["table.pr-cost-light-green-table"]
+        },
+        {
+          "name": "table-insurance",
+          "instances": ["table.pr-cost-center-table"]
+        }
+      ],
+      "sections": [
+        {
+          "id": "section-hero",
+          "name": "Hero",
+          "selector": "#background-container-1945835351",
+          "style": null,
+          "blocks": ["hero-pharma"],
+          "defaultContent": []
+        },
+        {
+          "id": "section-cta-wac",
+          "name": "AbbVie Contigo Program Banner + WAC Cost",
+          "selector": ".abbv-row-container.pr-cost-CAM.mavy-csto-seguro-medico-top",
+          "style": null,
+          "blocks": ["columns-cta-banner", "table-highlight"],
+          "defaultContent": []
+        },
+        {
+          "id": "section-insurance",
+          "name": "Insurance Cost Breakdown",
+          "selector": ".abbv-row-container.mavy-csto-seguro-medico",
+          "style": null,
+          "blocks": ["table-insurance"],
+          "defaultContent": [".pr-cost-h1", ".pr-cost-h3", ".pr-cost-text-indent"]
+        },
+        {
+          "id": "section-isi",
+          "name": "ISI (Important Safety Information)",
+          "selector": ".abbv-inline-use-isi",
+          "style": null,
+          "blocks": [],
+          "defaultContent": [".abbv-isi-content"]
+        }
+      ]
+    }
+  ]
+}
