@@ -1,0 +1,39 @@
+{
+  "variantName": "table-highlight",
+  "baseBlock": "table",
+  "version": "1.0.0",
+  "created": "2026-05-20T10:04:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.mavyretpr.com/costos",
+    "originPage": "MAVYRET cost information page (Spanish/PR)",
+    "blockPosition": "middle"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "accent",
+    "density": "compact",
+    "purpose": "cost-highlight",
+    "imagePattern": "noimg"
+  },
+  "contentPattern": {
+    "structure": "single row table with label + value (no header)",
+    "buttonCount": 0,
+    "imageCount": 0
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "single-row highlighted cost or pricing tables",
+      "WAC/wholesale cost callout boxes",
+      "key-value pair highlight tables with colored background"
+    ],
+    "notSuitableFor": [
+      "multi-row data tables",
+      "tables requiring header rows",
+      "complex comparison tables"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/costos"],
+    "reuseCount": 1,
+    "lastUsed": "2026-05-20T10:04:00.000Z"
+  }
+}

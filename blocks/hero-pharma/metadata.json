@@ -1,0 +1,39 @@
+{
+  "variantName": "hero-pharma",
+  "baseBlock": "hero",
+  "version": "1.0.0",
+  "created": "2026-05-20T10:04:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.mavyretpr.com/costos",
+    "originPage": "MAVYRET cost information page (Spanish/PR)",
+    "blockPosition": "top"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "colored",
+    "density": "minimal",
+    "purpose": "pharma-hero",
+    "imagePattern": "large"
+  },
+  "contentPattern": {
+    "structure": "background image + heading + paragraph",
+    "buttonCount": 0,
+    "imageCount": 1
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "pharmaceutical product pages",
+      "healthcare cost information pages",
+      "pages with background photo hero and green overlay text"
+    ],
+    "notSuitableFor": [
+      "hero sections without background images",
+      "hero sections with multiple CTAs",
+      "dark-only hero sections"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/costos"],
+    "reuseCount": 1,
+    "lastUsed": "2026-05-20T10:04:00.000Z"
+  }
+}

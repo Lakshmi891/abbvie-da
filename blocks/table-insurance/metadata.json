@@ -1,0 +1,39 @@
+{
+  "variantName": "table-insurance",
+  "baseBlock": "table",
+  "version": "1.0.0",
+  "created": "2026-05-20T10:04:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.mavyretpr.com/costos",
+    "originPage": "MAVYRET cost information page (Spanish/PR)",
+    "blockPosition": "middle"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "spacious",
+    "purpose": "insurance-breakdown",
+    "imagePattern": "noimg"
+  },
+  "contentPattern": {
+    "structure": "header row + multi-row data table with 2 columns",
+    "buttonCount": 0,
+    "imageCount": 0
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "insurance category cost breakdown tables",
+      "multi-row bordered data tables with header",
+      "cost comparison tables with category labels"
+    ],
+    "notSuitableFor": [
+      "single-row highlight tables",
+      "tables without headers",
+      "complex multi-column data tables with many columns"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/costos"],
+    "reuseCount": 1,
+    "lastUsed": "2026-05-20T10:04:00.000Z"
+  }
+}
