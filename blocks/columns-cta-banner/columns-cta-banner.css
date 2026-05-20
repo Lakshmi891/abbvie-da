@@ -1,0 +1,33 @@
+.columns-cta-banner > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.columns-cta-banner img {
+  width: 100%;
+}
+
+.columns-cta-banner > div > div {
+  order: 1;
+}
+
+.columns-cta-banner > div > .columns-cta-banner-img-col {
+  order: 0;
+}
+
+.columns-cta-banner > div > .columns-cta-banner-img-col img {
+  display: block;
+}
+
+@media (width >= 900px) {
+  .columns-cta-banner > div {
+    align-items: center;
+    flex-direction: unset;
+    gap: 32px;
+  }
+
+  .columns-cta-banner > div > div {
+    flex: 1;
+    order: unset;
+  }
+}

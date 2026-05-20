@@ -1,0 +1,58 @@
+.table-insurance {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.table-insurance table {
+  width: 100%;
+  max-width: 100%;
+  border-collapse: collapse;
+  font-size: var(--body-font-size-xs);
+}
+
+@media (width >= 600px) {
+  .table-insurance table {
+    font-size: var(--body-font-size-s);
+  }
+}
+
+@media (width >= 900px) {
+  .table-insurance table {
+    font-size: var(--body-font-size-m);
+  }
+}
+
+.table-insurance table thead tr {
+  border-top: 2px solid;
+  border-bottom: 2px solid;
+}
+
+.table-insurance table tbody tr {
+  border-bottom: 1px solid;
+}
+
+.table-insurance table th {
+  font-weight: 700;
+}
+
+.table-insurance table th,
+.table-insurance table td {
+  padding: 8px 16px;
+  text-align: left;
+}
+
+/* no header variant */
+.table-insurance.no-header table tbody tr {
+  border-top: 1px solid;
+}
+
+/* striped variant */
+.table-insurance.striped tbody tr:nth-child(odd) {
+  background-color: var(--overlay-background-color);
+}
+
+/* bordered variant */
+.table-insurance.bordered table th,
+.table-insurance.bordered table td {
+  border: 1px solid;
+}

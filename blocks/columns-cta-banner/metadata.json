@@ -1,0 +1,39 @@
+{
+  "variantName": "columns-cta-banner",
+  "baseBlock": "columns",
+  "version": "1.0.0",
+  "created": "2026-05-20T10:04:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.mavyretpr.com/costos",
+    "originPage": "MAVYRET cost information page (Spanish/PR)",
+    "blockPosition": "middle"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "compact",
+    "purpose": "program-enrollment",
+    "imagePattern": "logo"
+  },
+  "contentPattern": {
+    "structure": "logos + CTA button + descriptive text",
+    "buttonCount": 1,
+    "imageCount": 1
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "patient support program enrollment banners",
+      "CTA sections with logos and description",
+      "side-by-side image+CTA with text description"
+    ],
+    "notSuitableFor": [
+      "simple two-column text layouts",
+      "image galleries",
+      "comparison layouts without CTAs"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/costos"],
+    "reuseCount": 1,
+    "lastUsed": "2026-05-20T10:04:00.000Z"
+  }
+}
