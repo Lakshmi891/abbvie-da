@@ -1,0 +1,14 @@
+{
+  "status": "success",
+  "url": "https://www.mavyretpr.com/costos",
+  "path": "costos",
+  "timestamp": "2026-05-20T10:16:50.138Z",
+  "title": "MAVYRET (glecaprevir/pibrentasvir) | Costos",
+  "template": "costos-page",
+  "blocks": [
+    "hero-pharma",
+    "columns-cta-banner",
+    "table-highlight",
+    "table-insurance"
+  ]
+}
