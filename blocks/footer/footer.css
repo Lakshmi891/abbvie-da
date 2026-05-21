@@ -4,6 +4,16 @@ footer {
   color: #4a4a4a;
 }
 
+footer .footer > div {
+  margin: auto;
+  max-width: 1180px;
+}
+
+footer .footer .section {
+  margin: 0;
+  padding: 0;
+}
+
 footer .footer .section > div {
   margin: auto;
   max-width: 1180px;
@@ -13,7 +23,10 @@ footer .footer .section > div {
 footer .footer .section:first-of-type > div {
   text-align: center;
   padding-bottom: 16px;
-  border-bottom: 1px solid #777;
+  border-bottom: 1px solid #4a4a4a;
+  margin-bottom: 16px;
+  margin-left: 40px;
+  margin-right: 40px;
 }
 
 footer .footer ul {
@@ -40,12 +53,21 @@ footer .footer ul a:hover {
 
 footer .footer .section:last-of-type > div {
   text-align: center;
-  padding-top: 24px;
+  padding-top: 16px;
+  padding-bottom: 20px;
+  border-top: 1px solid #4a4a4a;
+  margin-left: 40px;
+  margin-right: 40px;
 }
 
 footer .footer .section:last-of-type p {
   margin: 0 0 16px;
   line-height: 1.4;
+}
+
+footer .footer .section:last-of-type p:last-child {
+  margin: 0;
+  display: none;
 }
 
 footer .footer .section:last-of-type a:any-link {
@@ -60,7 +82,8 @@ footer .footer .section:last-of-type a:hover {
 footer .footer .section:last-of-type picture {
   display: flex;
   justify-content: flex-end;
-  margin-top: 16px;
+  margin-top: 8px;
+  margin-bottom: 0;
 }
 
 footer .footer .section:last-of-type img {
@@ -71,5 +94,14 @@ footer .footer .section:last-of-type img {
 @media (width >= 900px) {
   footer .footer .section > div {
     padding: 20px 32px;
+  }
+
+  footer .footer .section:first-of-type > div {
+    padding-bottom: 16px;
+  }
+
+  footer .footer .section:last-of-type > div {
+    padding-top: 16px;
+    padding-bottom: 20px;
   }
 }
