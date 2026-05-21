@@ -1,156 +1,67 @@
-# MAVYRET Costos Page Migration Plan
+# Header/Navigation Styling Plan — Match Live Design
 
 ## Overview
-Migrate `https://www.mavyretpr.com/costos` into Adobe Edge Delivery Services (EDS) without modifying existing global/shared files (styles.css, fonts.css, header, footer, navigation).
+Modify `blocks/header/header.css` to match the live MAVYRET costos page navigation/header design shown in the screenshot.
 
-## Page Analysis Summary
+## Live Site Header Design Analysis (from screenshot)
 
-The "Costos" page is a Spanish-language pharmaceutical cost information page for MAVYRET (AbbVie). It contains:
-- A hero/banner section with the page title
-- An enrollment CTA section (AbbVie Contigo program)
-- A cost breakdown grid showing insurance categories
-- A lengthy ISI (Important Safety Information) section
-- Standard header/footer (already existing in project)
+The live header has these visual characteristics:
 
-## Existing Project Assets (Do NOT Modify)
-- `styles/styles.css` — Global styles with CSS custom properties
-- `styles/fonts.css` — Roboto & Roboto Condensed font definitions
-- `styles/lazy-styles.css` — Lazy-loaded global styles
-- `blocks/header/` — Shared header block
-- `blocks/footer/` — Shared footer block
-- `blocks/hero/` — Existing hero block (image background + h1)
-- `blocks/cards/` — Existing cards block (grid of image + text cards)
-- `blocks/columns/` — Existing columns block (side-by-side layout)
-- `blocks/fragment/` — Fragment inclusion block
-- `scripts/scripts.js` — Global decoration logic
-- `scripts/aem.js` — Core AEM library (never modify)
+1. **Full-width bar** with semi-transparent/light overlay background
+2. **MAVYRET logo** on the left — large wordmark with "glecaprevir/pibrentasvir" and "100 mg/40 mg tablets" below
+3. **Navigation links** on the right side — horizontal, uppercase:
+   - "INFORMACIÓN IMPORTANTE DE SEGURIDAD" (plain text, not a dropdown)
+   - "INFORMACIÓN COMPLETA PARA LA PRESCRIPCIÓN ▼" (dropdown with gray background when open)
+   - "INFORMACIÓN PARA PACIENTES ▼" (dropdown)
+4. **Dropdown** panel has light gray background with two sub-links
+5. **Text color**: Dark gray/black for nav items, no orange
+6. **Font**: Uppercase, medium weight, ~14-16px
+7. **Header position**: Fixed/sticky at top
+8. **No hamburger visible** in desktop view (mobile only)
 
-## Blocks Identified on Page
+## Current State vs. Target
 
-| # | Block Name | Type | Reusable? | Notes |
-|---|-----------|------|-----------|-------|
-| 1 | `hero` (existing) | Hero banner | Yes | Existing block can be reused with text-only variant (no background image) or page-specific styling |
-| 2 | `cost-table` (new) | Info grid/table | Yes | Insurance category grid with icons, headings, descriptions |
-| 3 | `cta-banner` (new) | Call-to-action | Yes | Centered CTA with logo lockup, heading, description, button |
-| 4 | `isi` (new) | Safety information | Yes | Scrollable/expandable safety information disclosure block |
+| Aspect | Current CSS | Target (live site) |
+|--------|-------------|-------------------|
+| Background | White (`var(--background-color)`) | Semi-transparent or white |
+| Position | Fixed on mobile, relative on desktop | Should be fixed/sticky on all sizes |
+| Logo size | 128px width | Larger (~200-250px) to match the MAVYRET wordmark |
+| Nav font size | `var(--body-font-size-s)` | ~14px, uppercase |
+| Nav text color | `currentcolor` | Dark gray (#4a4a4a) |
+| Dropdown background | `var(--light-color)` | Light gray with border |
+| Dropdown position | Absolute, 200px wide | Absolute below item, wider to fit content |
+| Dropdown arrow | CSS triangle | ▼ dropdown indicator |
+| Nav gap | 24px | Tighter, ~16-20px |
+| Max-width | 1264px | Wider/full-width with padding |
 
-## Block Variants
+## Key Changes Needed
 
-### Hero (existing block — variant: `hero (text-centered)`)
-- The costos page hero is text-centered with a colored background (no background image)
-- Can be handled as a section with styling metadata rather than modifying the hero block
-- Alternative: Use default content (h1 + paragraph) in a section with background color metadata
+1. **Logo**: Increase width from 128px to ~220px
+2. **Nav items**: Uppercase text, smaller font (~14px), tighter spacing
+3. **Header**: Keep white background, could add subtle border-bottom or shadow
+4. **Dropdown**: Wider panel, gray background, proper positioning below link
+5. **Dropdown indicator**: Style the `::after` arrow to look like a down-arrow (▼)
+6. **Alignment**: Logo left, nav items right-aligned
 
-### Cost Table (new block)
-- Grid layout showing 5 insurance categories
-- Each cell has: icon/image, category heading, description text, optional link
-- Responsive: stacks on mobile, 2-3 columns on tablet, up to 5 on desktop
-- Reusable pattern for any tabular comparison content
+## Files to Modify
 
-### CTA Banner (new block)
-- Logo/image + heading + description + primary button
-- Centered layout with optional background color
-- Could also be handled as a section with default content + button styling
-
-### ISI Block (new block)
-- Long-form safety information with structured headings
-- May use a scrollable container or expandable accordion pattern
-- Standard pharma pattern — highly reusable across MAVYRET pages
-
-## Files to Create
-
-### New Blocks
-```
-blocks/cost-table/
-  ├── cost-table.js        # Decoration logic for the grid
-  └── cost-table.css       # Grid styling, responsive layout
-
-blocks/cta-banner/
-  ├── cta-banner.js        # Minimal decoration
-  └── cta-banner.css       # Centered CTA styling
-
-blocks/isi/
-  ├── isi.js               # Scrollable container / expand logic
-  └── isi.css              # ISI-specific typography and container styles
-```
-
-### Content File
-```
-content/costos.plain.html   # The migrated page content in EDS markup format
-```
-
-### Import Infrastructure (generated via migration skill)
-```
-tools/importer/            # Import scripts for content generation
-```
-
-## Section Structure (Top to Bottom)
-
-1. **Section 1 — Hero/Title** (section metadata: background color navy/dark blue)
-   - MAVYRET logo image
-   - H1: "¿Tiene preguntas sobre costos?"
-   - Paragraph: descriptive subheading text
-
-2. **Section 2 — CTA Banner** (cta-banner block)
-   - Partner logos lockup image
-   - "INSCRÍBETE HOY" button → links to AbbVie Contigo enrollment
-   - Program description paragraph
-
-3. **Section 3 — Cost Breakdown** (cost-table block)
-   - Heading: cost information intro
-   - 5-cell grid: Commercial, Medicaid, Medicare Part D, Other Insurance, Uninsured
-   - WAC pricing disclaimer text
-
-4. **Section 4 — ISI** (isi block)
-   - "INFORMACIÓN IMPORTANTE DE SEGURIDAD" heading
-   - Full prescribing safety information with sub-sections
-   - Links to PDF documents
-
-5. **Section 5 — Footer** (existing footer fragment — no changes)
-
-## Implementation Approach
-
-Use the `excat-site-migration` skill to orchestrate:
-1. Page analysis of the source URL
-2. Block mapping and variant detection
-3. Import infrastructure generation (parsers + transformers)
-4. Content import execution
-5. Block CSS development for visual fidelity
-6. Visual validation against original
-
-## Key Constraints
-- **No modifications** to: `styles/styles.css`, `styles/fonts.css`, `scripts/scripts.js`, `scripts/aem.js`, header/footer/nav blocks
-- Page-specific CSS only in new block CSS files
-- All text content in Spanish
-- Responsive design: mobile-first with breakpoints at 600px / 900px / 1200px
-- Must pass AEM linting (`npm run lint`)
-- Semantic HTML structure following EDS conventions
+| File | Change |
+|------|--------|
+| `blocks/header/header.css` | Update styles to match live site design |
 
 ## Checklist
 
-- [ ] Run page analysis on `https://www.mavyretpr.com/costos` to extract full DOM structure
-- [ ] Identify and confirm block variants (reuse existing blocks where possible)
-- [ ] Create `blocks/cost-table/cost-table.js` — grid decoration logic
-- [ ] Create `blocks/cost-table/cost-table.css` — responsive grid styling
-- [ ] Create `blocks/cta-banner/cta-banner.js` — CTA decoration logic
-- [ ] Create `blocks/cta-banner/cta-banner.css` — centered CTA styling
-- [ ] Create `blocks/isi/isi.js` — ISI container decoration
-- [ ] Create `blocks/isi/isi.css` — ISI typography and scroll/expand styles
-- [ ] Generate import infrastructure (parsers + transformers)
-- [ ] Generate `content/costos.plain.html` via import script execution
-- [ ] Validate page renders correctly in local dev server
-- [ ] Visual comparison against live site for fidelity
-- [ ] Run `npm run lint` to ensure code quality
-- [ ] Verify responsive behavior at all breakpoints (mobile, tablet, desktop)
-- [ ] Confirm no global/shared files were modified
-
-## Risks & Considerations
-- The ISI section contains extensive legal/medical text — must be imported verbatim
-- Brand colors (navy, specific hex values) need extraction from the live site via computed styles
-- Partner logo images need to be downloaded and placed in the project
-- The cost table structure may need adjustment based on actual DOM analysis
-- Spanish language content — ensure `lang="es"` is set appropriately on the page
+- [ ] Increase logo width from 128px to ~220px
+- [ ] Make nav items uppercase with smaller font size (~14px)
+- [ ] Adjust nav spacing/gap to be tighter
+- [ ] Style dropdown panel: wider, light gray background, proper border
+- [ ] Fix dropdown arrow/indicator styling
+- [ ] Ensure header stays fixed/sticky on desktop
+- [ ] Add subtle bottom border or shadow to header
+- [ ] Verify responsive: hamburger on mobile, horizontal nav on desktop
+- [ ] Run `npm run lint:css`
+- [ ] Visual comparison against live screenshot
 
 ---
 
-*This plan requires Execute mode to proceed with implementation. Switch out of Plan mode to begin the migration.*
+*This plan requires Execute mode to proceed with implementation.*
