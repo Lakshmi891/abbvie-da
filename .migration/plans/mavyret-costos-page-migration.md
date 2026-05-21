@@ -1,84 +1,66 @@
-# Footer Styling Fix — Logo Not Displaying
+# Header/Navigation Styling Plan — Match Live Design
 
 ## Overview
-The AbbVie logo is not displaying in the footer despite being present in the HTML content and having CSS rules to show it.
+Modify `blocks/header/header.css` to match the live MAVYRET costos page navigation/header design shown in the screenshot.
 
-## Root Cause Analysis
+## Live Site Header Design Analysis (from screenshot)
 
-Looking at the CSS (line 68-71):
-```css
-footer .footer .section:last-of-type p:last-child {
-  margin: 0;
-  display: none;
-}
-```
+The live header has these visual characteristics:
 
-And the HTML content structure of the second section (from `content/footer.plain.html`):
-```
-<p>disclaimer text...</p>
-<p>copyright text...</p>
-<picture>...<img>...</picture>
-<p><br></p>             ← This is the LAST <p>, hidden with display:none
-```
+1. **Full-width bar** with semi-transparent/light overlay background
+2. **MAVYRET logo** on the left — large wordmark with "glecaprevir/pibrentasvir" and "100 mg/40 mg tablets" below
+3. **Navigation links** on the right side — horizontal, uppercase:
+   - "INFORMACIÓN IMPORTANTE DE SEGURIDAD" (plain text, not a dropdown)
+   - "INFORMACIÓN COMPLETA PARA LA PRESCRIPCIÓN ▼" (dropdown with gray background when open)
+   - "INFORMACIÓN PARA PACIENTES ▼" (dropdown)
+4. **Dropdown** panel has light gray background with two sub-links
+5. **Text color**: Dark gray/black for nav items, no orange
+6. **Font**: Uppercase, medium weight, ~14-16px
+7. **Header position**: Fixed/sticky at top
+8. **No hamburger visible** in desktop view (mobile only)
 
-The `<picture>` element sits between the copyright `<p>` and the trailing empty `<p>`. The `p:last-child` rule correctly targets only the empty `<p><br></p>` — it should NOT hide the logo.
+## Current State vs. Target
 
-**However**, the issue may be that the `<picture>` element is being rendered inside the AEM section wrapper differently. In the rendered DOM, the structure becomes:
-```
-.section:last-of-type > div >
-  p (disclaimer)
-  p (copyright)
-  picture (logo)        ← NOT a <p>, so p:last-child doesn't match the picture
-  p (empty br)          ← This IS the last <p> child, hidden
-```
+| Aspect | Current CSS | Target (live site) |
+|--------|-------------|-------------------|
+| Background | White (`var(--background-color)`) | Semi-transparent or white |
+| Position | Fixed on mobile, relative on desktop | Should be fixed/sticky on all sizes |
+| Logo size | 128px width | Larger (~200-250px) to match the MAVYRET wordmark |
+| Nav font size | `var(--body-font-size-s)` | ~14px, uppercase |
+| Nav text color | `currentcolor` | Dark gray (#4a4a4a) |
+| Dropdown background | `var(--light-color)` | Light gray with border |
+| Dropdown position | Absolute, 200px wide | Absolute below item, wider to fit content |
+| Dropdown arrow | CSS triangle | ▼ dropdown indicator |
+| Nav gap | 24px | Tighter, ~16-20px |
+| Max-width | 1264px | Wider/full-width with padding |
 
-Wait — the `picture` element comes AFTER the last `<p>` in the source HTML. But `p:last-child` selects the last child that is a `<p>` — NO. `:last-child` selects an element only if it is the last child of its parent, regardless of type. So `p:last-child` means "a `<p>` that is the last child of its parent."
+## Key Changes Needed
 
-In the rendered DOM:
-- The trailing `<p><br></p>` IS the last child of the container div
-- So `p:last-child` matches it and hides it ✅
+1. **Logo**: Increase width from 128px to ~220px
+2. **Nav items**: Uppercase text, smaller font (~14px), tighter spacing
+3. **Header**: Keep white background, could add subtle border-bottom or shadow
+4. **Dropdown**: Wider panel, gray background, proper positioning below link
+5. **Dropdown indicator**: Style the `::after` arrow to look like a down-arrow (▼)
+6. **Alignment**: Logo left, nav items right-aligned
 
-But wait — the `<picture>` element is BEFORE that trailing `<p>`. So the picture should be visible. Unless the picture is being wrapped in a `<p>` by the AEM decorator (since inline images often get wrapped in `<p>` tags during decoration).
+## Files to Modify
 
-**Most likely cause:** The AEM decoration or fragment loading is wrapping the `<picture>` inside a `<p>` tag, making it a `<p>` child. If that wrapped `<p>` becomes the last `<p>` child... it would be hidden by our `display: none` rule.
-
-**Fix:** Change the selector from `p:last-child` to target the specific empty trailing paragraph more precisely, without accidentally hiding the picture wrapper.
-
-## Fix
-
-Replace:
-```css
-footer .footer .section:last-of-type p:last-child {
-  margin: 0;
-  display: none;
-}
-```
-
-With:
-```css
-footer .footer .section:last-of-type p:empty,
-footer .footer .section:last-of-type p:last-child:not(:has(picture)):not(:has(img)) {
-  margin: 0;
-  display: none;
-}
-```
-
-Or simpler — just target empty paragraphs (the `<p><br></p>` only contains a `<br>`):
-```css
-footer .footer .section:last-of-type > div > p:last-child {
-  margin: 0;
-  display: none;
-}
-```
-
-The safest fix is to only hide `<p>` elements that don't contain meaningful content (no images, no text).
+| File | Change |
+|------|--------|
+| `blocks/header/header.css` | Update styles to match live site design |
 
 ## Checklist
 
-- [ ] Fix `p:last-child` selector to not accidentally hide the picture/logo wrapper
-- [ ] Verify logo displays correctly after fix
+- [ ] Increase logo width from 128px to ~220px
+- [ ] Make nav items uppercase with smaller font size (~14px)
+- [ ] Adjust nav spacing/gap to be tighter
+- [ ] Style dropdown panel: wider, light gray background, proper border
+- [ ] Fix dropdown arrow/indicator styling
+- [ ] Ensure header stays fixed/sticky on desktop
+- [ ] Add subtle bottom border or shadow to header
+- [ ] Verify responsive: hamburger on mobile, horizontal nav on desktop
 - [ ] Run `npm run lint:css`
-- [ ] Visual comparison
+- [ ] Visual comparison against live screenshot
 
 ---
 
