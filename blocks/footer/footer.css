@@ -6,7 +6,7 @@ footer {
 
 footer .footer > div {
   margin: auto;
-  max-width: 1180px;
+  /* max-width: 1180px; */
 }
 
 footer .footer .section {
@@ -17,7 +17,7 @@ footer .footer .section {
 footer .footer .section > div {
   margin: auto;
   max-width: 1180px;
-  padding: 20px 24px;
+  /* padding: 20px 24px; */
 }
 
 footer .footer .section:first-of-type > div {
@@ -33,7 +33,7 @@ footer .footer .section:first-of-type > div {
 
 footer .footer ul {
   list-style: none;
-  margin: 16px 0;
+  /* margin: 16px 0; */
   padding: 0;
 }
 
@@ -55,11 +55,12 @@ footer .footer ul a:hover {
 
 footer .footer .section:last-of-type > div {
   text-align: center;
-  padding-top: 16px;
+  padding-top: 30px;
   padding-bottom: 20px;
   border-top: 1px solid #4a4a4a;
   margin-left: 40px;
   margin-right: 40px;
+  margin-top:25px
 }
 
 footer .footer .section:last-of-type p {
@@ -95,15 +96,15 @@ footer .footer .section:last-of-type img {
 
 @media (width >= 900px) {
   footer .footer .section > div {
-    padding: 20px 32px;
+    /* padding: 20px 32px; */
   }
 
   footer .footer .section:first-of-type > div {
-    padding-bottom: 16px;
+    /* padding-bottom: 16px; */
   }
 
   footer .footer .section:last-of-type > div {
-    padding-top: 16px;
+    /* padding-top: 16px; */
     padding-bottom: 20px;
   }
 }
